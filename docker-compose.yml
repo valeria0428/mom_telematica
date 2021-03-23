@@ -7,6 +7,8 @@ services:
       - "5000:5000"
     depends_on:
       - broker
+    volumes:
+      - ./data:/storage
   broker:
     build: "broker/."
     restart: always

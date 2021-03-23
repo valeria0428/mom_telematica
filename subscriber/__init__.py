@@ -9,7 +9,7 @@ if __name__ == '__main__':
     userKey = {'k': "lbMpr6VbKtDKtTYWYbtEaYIgTRo6MnyxPnNPquJ5mLY", 'kty': 'oct'}
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect(('0.0.0.0', 5050))
+        s.connect(('34.192.83.53', 5050))
         print("Connected")
         data = {
             "type": "connection",

@@ -11,8 +11,8 @@ class StorageController:
     def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
             cls.__instance = object.__new__(cls)
-            cls.db_clients = TinyDB('clients.json')
-            cls.db_channels = TinyDB('channels.json')
+            cls.db_clients = TinyDB('storage/clients.json')
+            cls.db_channels = TinyDB('storage/channels.json')
             return cls.__instance
         return cls.__instance
 
