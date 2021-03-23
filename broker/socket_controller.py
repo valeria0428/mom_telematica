@@ -157,7 +157,7 @@ class SocketController:
                     "response": "Subscribe to the channel"
                 }
 
-                self.__security.generate_token(data, key)
+                connection.send(self.__security.generate_token(data, key).encode())
 
             elif data['type'] == "disconnect":
                 connection.send("Connection closed".encode())
