@@ -36,7 +36,7 @@ class Synchronizer:
 
     def connect(self):
         self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.__socket.connect(('0.0.0.0', 5050))
+        self.__socket.connect(('34.192.83.53', 5050))
 
         key = json.loads(self.__JWT.get_global_key)
 
