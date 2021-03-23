@@ -150,7 +150,7 @@ class SocketController:
 
             if data['type'] == "subscribe":
                 channel = self.__cache.search_channel(data['topic'])
-                self.__topics.add_subscriber(channel['_id'], connection)
+                self.__topics.add_subscriber(channel['_id'], connection, key)
 
                 data = {
                     "type": "response",
@@ -167,7 +167,7 @@ class SocketController:
             elif data['type'] == "message":
                 channel = self.__cache.search_channel(data['topic'])
                 logging.info(channel)
-                self.__topics.send_message_to_subscribers(channel['_id'], address, data['message'])
+                self.__topics.send_message_to_subscribers(channel['_id'], address, data['message'], data['topic'])
 
                 data = self.__security.generate_token(data, key)
 
