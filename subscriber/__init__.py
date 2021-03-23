@@ -10,6 +10,7 @@ if __name__ == '__main__':
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect(('0.0.0.0', 5050))
+        print("Connected")
         data = {
             "type": "connection",
             "from": socket.gethostname(),
@@ -22,24 +23,24 @@ if __name__ == '__main__':
         data = securityCell.verify_token(data, userKey)
 
         if data['response'] == "welcome":
+            data = {
+                "type": "subscribe",
+                "from": socket.gethostname(),
+                "user": "a11235de4ef7c79179a4f49aa2dd32cf",
+                "topic": "Panditas"
+            }
+
+            data = securityCell.generate_token(data, userKey['k'])
+
+            try:
+                s.sendall(data.encode())
+            except:
+                s.connect(('0.0.0.0', 5050))
+
+            data = s.recv(4096)
+            print(data)
+
             while True:
-                message = input("Message to send: ")
-                data = {
-                    "type": "message",
-                    "from": socket.gethostname(),
-                    "user": "a11235de4ef7c79179a4f49aa2dd32cf",
-                    "topic": "Panditas",
-                    "message": message
-                }
-
-                data = securityCell.generate_token(data, userKey['k'])
-
-                try:
-                    s.sendall(data.encode())
-                except:
-                    s.connect(('0.0.0.0', 5050))
-                    s.sendall(message.encode())
-
                 data = s.recv(4096)
                 print(data.decode())
 

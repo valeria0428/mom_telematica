@@ -50,5 +50,6 @@ def main():
 if __name__ == "__main__":
     logging.info("Connecting to broker")
     syncker.connect()
+    syncker.start_watcher()
 
     flask_app.run()

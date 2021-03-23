@@ -2,6 +2,7 @@ import socket
 import json
 import time
 import logging
+import threading
 
 from jwt_controller import JWTController
 from storage_controller import StorageController
@@ -10,6 +11,8 @@ from storage_controller import StorageController
 class Synchronizer:
     __instance = None
     __socket = None
+    __watcher_thread = None
+    __watcher_execution = True
 
     last_update = 0
 
@@ -75,6 +78,50 @@ class Synchronizer:
                 logging.error(decrypted['response'])
         else:
             logging.error(decrypted['response'])
+
+    def start_watcher(self):
+        self.__watcher_thread = threading.Thread(target=self.__watcher__, name="checker")
+        self.__watcher_thread.start()
+        logging.info("Checker started")
+
+    def stop_watcher(self):
+        self.__watcher_execution = False
+        self.__watcher_thread.join()
+        return True
+
+    def __watcher__(self):
+        while self.__watcher_execution:
+            logging.info("Checking connection")
+            try:
+                data = {
+                    "type": "ping",
+                    "defaultKey": self.__JWT.get_global_key
+                }
+
+                key = json.loads(self.__JWT.get_global_key)
+
+                data = self.__JWT.generate_token(data, key['k'])
+
+                self.__socket.sendall(data.encode())
+
+                response = self.__socket.recv(4096)
+
+                try:
+                    response = self.__JWT.verify_token(response.decode(), {'k': key['k'], 'kty': 'oct'})
+                except:
+                    continue
+
+                if response['response'] == "pong":
+                    logging.info(f"Broker connected {time.time()}")
+            except:
+                logging.info("Server don't pong, resync")
+                self.is_connected = False
+                try:
+                    self.connect()
+                except:
+                    pass
+
+            time.sleep(5)
 
     def update(self):
         if self.is_connected:

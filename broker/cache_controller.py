@@ -26,9 +26,10 @@ class CacheController:
         logging.info("Cache saved")
 
     def get(self):
-        return self.clients, self.queues
+        return self.clients, self.channels
 
     def search_client(self, id):
-        logging.info(self.clients)
         return next((client for client in self.clients if client['_id'] == id), None)
 
+    def search_channel(self, id):
+        return next((channel for channel in self.channels if channel['name'] == id), None)

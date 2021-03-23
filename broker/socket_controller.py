@@ -6,6 +6,7 @@ import json
 from jwt_controller import SecurityCell
 from concurrent.futures import ThreadPoolExecutor
 from cache_controller import CacheController
+from topics_manager import TopicsManager
 
 
 class SocketController:
@@ -17,6 +18,7 @@ class SocketController:
 
     __security = SecurityCell().__get_instance__
     __cache = CacheController()
+    __topics = TopicsManager()
 
     s = None
 
@@ -65,7 +67,7 @@ class SocketController:
                 if data['topic'] == "update" and data['from'] == "synchronizer":
                     executor.submit(self.__update_connection, connection, address, key)
                 else:
-                    executor.submit(self.__read_connection, connection, address)
+                    executor.submit(self.__read_connection, connection, address, key)
             else:
                 logging.error("Authentication failed")
                 pinning = {
@@ -83,8 +85,8 @@ class SocketController:
                 else:
                     return False, None
             else:
-                logging.info(self.__cache.search_client(data['user']))
-                return True,
+                client = self.__cache.search_client(data['user'])
+                return True, client['key']['k']
         else:
             return False, None
 
@@ -104,7 +106,17 @@ class SocketController:
             except Exception as err:
                 logging.error(err)
 
+            if info_to_update['type'] == "ping":
+                response = self.__security.generate_token({
+                    "type": "response",
+                    "response": "pong"
+                }, key)
+                connection.send(response.encode())
+                continue
+
             self.__cache.save(info_to_update['data'])
+
+            self.__topics.update()
 
             response = json.dumps({
                     "type": "response",
@@ -119,7 +131,7 @@ class SocketController:
                 logging.info("Thread killed. Connection closed")
                 logging.error(err)
 
-    def __read_connection(self, connection, address):
+    def __read_connection(self, connection, address, key):
         while True:
             data = connection.recv(4096)
 
@@ -127,18 +139,45 @@ class SocketController:
                 connection.close()
 
             data = data.decode()
-            logging.info(data)
 
-            if data == "close":
+
+            try:
+                _key = {'k': key, 'kty':'oct'}
+                data = self.__security.verify_token(data, _key)
+                logging.info(data)
+            except Exception as err:
+                logging.error(err)
+
+            if data['type'] == "subscribe":
+                channel = self.__cache.search_channel(data['topic'])
+                self.__topics.add_subscriber(channel['_id'], connection)
+
+                data = {
+                    "type": "response",
+                    "response": "Subscribe to the channel"
+                }
+
+                self.__security.generate_token(data, key)
+
+            elif data['type'] == "disconnect":
                 connection.send("Connection closed".encode())
                 connection.close()
                 break
 
-            try:
-                connection.send(data.encode())
-            except Exception as err:
-                logging.info("Thread killed. Connection closed")
-                logging.error(err)
+            elif data['type'] == "message":
+                channel = self.__cache.search_channel(data['topic'])
+                logging.info(channel)
+                self.__topics.send_message_to_subscribers(channel['_id'], address, data['message'])
+
+                data = self.__security.generate_token(data, key)
+
+                try:
+                    connection.send(data.encode())
+                except Exception as err:
+                    logging.info("Thread killed. Connection closed")
+                    logging.error(err)
+            else:
+                logging.info("Message type unrecognized")
 
     def create_new_client(self):
         pass
