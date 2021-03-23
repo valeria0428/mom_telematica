@@ -37,7 +37,7 @@ class TopicsManager:
                     "message": message
                 }
 
-                __channel['connection'].send(self.__security.generate_token(response, __channel['key']))
+                __channel['connection'].send(self.__security.generate_token(response, __channel['key']).encode())
             except:
                 pass
 
