@@ -1,48 +1,29 @@
-import socket
-import json
+import logging
 
-from jwt_controller import SecurityCell
+from flask_instance import FlaskInstance
+from socket_actions import SocketActions
+
+
+logging.basicConfig(level=logging.DEBUG)  # Configure logging
+
+# Configure flask
+flask_app = FlaskInstance().__getinstance__
+app = flask_app.get_app()
+
+socket_action = SocketActions().__get_instance__
+
+flask_app.add_endpoint('/message', 'message', socket_action.new_message, ['post'])
+flask_app.add_endpoint('/disconnect', 'disconnect', socket_action.disconnect, ['post'])
+
+
+@app.route('/')
+def main():
+    return "Running"
 
 
 if __name__ == '__main__':
-    securityCell = SecurityCell().__get_instance__
-    userKey = {'k': "bWPdlgCsnc5dWrgVU7MO85P5w2-Id5ILfAXW3iRPo6k", 'kty': 'oct'}
-
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect(('34.192.83.53', 5050))
-        data = {
-            "type": "connection",
-            "from": socket.gethostname(),
-            "user": "c5352863b41a38708d44147eda736a6d",
-            "topic": ""
-        }
-        s.sendall(json.dumps(data).encode())
-        data = s.recv(4096)
-        data = data.decode()
-        data = securityCell.verify_token(data, userKey)
-
-        if data['response'] == "welcome":
-            while True:
-                message = input("Message to send: ")
-                data = {
-                    "type": "message",
-                    "from": socket.gethostname(),
-                    "user": "c5352863b41a38708d44147eda736a6d",
-                    "topic": "Eventos",
-                    "message": message
-                }
-
-                data = securityCell.generate_token(data, userKey['k'])
-
-                try:
-                    s.sendall(data.encode())
-                except:
-                    s.connect(('0.0.0.0', 5050))
-                    s.sendall(message.encode())
-
-                data = s.recv(4096)
-                print(data.decode())
-
-            print("All done")
-        else:
-            print("Error")
+    try:
+        socket_action.start_socket()
+        flask_app.run()
+    except Exception as err:
+        logging.error(err)
