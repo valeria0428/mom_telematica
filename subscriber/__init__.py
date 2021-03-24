@@ -44,7 +44,5 @@ if __name__ == '__main__':
                 data = s.recv(4096)
                 data = securityCell.verify_token(data.decode(), userKey)
                 print(data)
-
-            print("All done")
         else:
             print("Error")
