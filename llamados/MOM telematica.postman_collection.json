@@ -1,0 +1,300 @@
+{
+	"info": {
+		"_postman_id": "21a5e007-0504-4a85-a41b-91bfa4b3ae40",
+		"name": "MOM telematica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Get user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "34.192.83.53:5000/user/eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.rProAklDlBvIuwDKBXyrduS6pdCKMICE4cIfUss2Wkz7qEc58tIzrXwPDriO2CvwC7fyQPOYNo57YI2mo1Mao_GH6TPxaxXq.uSbWANK5QfylcmpKcU7WRw.d-33EgJCZiTJK8nGJn_QQ1K-nuYEO5W5QoEPuwn7mgMqcHxrrtcCNu2B4M6_2Nf1.b7BGF15E4N32YVweCThDQggoRhyhu18uZdDthszTU5o",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.rProAklDlBvIuwDKBXyrduS6pdCKMICE4cIfUss2Wkz7qEc58tIzrXwPDriO2CvwC7fyQPOYNo57YI2mo1Mao_GH6TPxaxXq.uSbWANK5QfylcmpKcU7WRw.d-33EgJCZiTJK8nGJn_QQ1K-nuYEO5W5QoEPuwn7mgMqcHxrrtcCNu2B4M6_2Nf1.b7BGF15E4N32YVweCThDQggoRhyhu18uZdDthszTU5o"
+							]
+						},
+						"description": "Search for a specific user in the claim"
+					},
+					"response": []
+				},
+				{
+					"name": "Get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "34.192.83.53:5000/users",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Retrive all the users"
+					},
+					"response": []
+				},
+				{
+					"name": "Add User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payload\": \"eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.zWk2nC-0uhVo7sDAIVSjm-idVEs1U0anzVClC0yznmcP8YBuEmuq1X7cvKwXJn5AjwwGPhO5HAP4K7h3fQvlUEKJJWOouT5r.YnvSz3kSpN9LHOHJioTi7Q.siaGs_hLJdu84ycuHGnWgXQSO_ruKDF-9Bn2KXaF-EY.uQKlc2LmGCdBQWEC9ZlZsBg3Z4RXYFfKPyrDauMv6C0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "34.192.83.53:5000/user",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "34.192.83.53:5000/user/eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.VOWNZvtjoc0v97-k7OQfn13dsDyya8g-mBh1lc6HdSGTgw9SEx0M0vJrNS-jxBYNv1A40A6X25ivatGxY8I1beMDDMYIDSkZ.flv0uMk26R6WCAnu__lbpw.yCKWA4oyK7EWWVwG6uAqUtpG8cNqlZE5SOB7NuIy8gZHRdQZypts3DHPrEQImhGc.MfG98stCIt-kyZ_z9-dgt_MbJa_fwZUPQfnSyvQcrjk",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.VOWNZvtjoc0v97-k7OQfn13dsDyya8g-mBh1lc6HdSGTgw9SEx0M0vJrNS-jxBYNv1A40A6X25ivatGxY8I1beMDDMYIDSkZ.flv0uMk26R6WCAnu__lbpw.yCKWA4oyK7EWWVwG6uAqUtpG8cNqlZE5SOB7NuIy8gZHRdQZypts3DHPrEQImhGc.MfG98stCIt-kyZ_z9-dgt_MbJa_fwZUPQfnSyvQcrjk"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "channels",
+			"item": [
+				{
+					"name": "Add Channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payload\": \"eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.vRvLD6djTulPZhsce3TTY2JIYEUQlJvwCWXzoMaqoxreFWL4kBgeowa9VA0gZnO-Wdc7-C-XKe1TZ3PsFtd5D37t8fuAgU6G.rXI4KN2o92hHfXSjuYB8Yw.DiMUepX7RZ6uiHFCFsOtBgE_QALbEOQktVrksdy-GeY.xMrw6NgebkADsJbHxocr10H08lnthA2imvijt0hf2mw\",\n    \"user\": \"c5352863b41a38708d44147eda736a6d\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "34.192.83.53:5000/channel",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"channel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List channels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "34.192.83.53:5000/channels/c5352863b41a38708d44147eda736a6d",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"channels",
+								"c5352863b41a38708d44147eda736a6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete channel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "34.192.83.53:5000/channel/eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.EnhEvJD_ETzcTVuw_sRxG8AVXTu08CFnbeldlrG3J0V3x61HTLoH6e_Nt79dQgpu9tL1FMoeyKmIx_bQ35Y7uq4YqUWmutTV.eEI79YKkTaWHaTsJKZg11A.dNZSrLiuE5_VzHNg2Ma2XQNAlGF0oD9V5sFZt5JUbPOvmB9BGTM5GonzGg99cBFR.F82cdwaX19KXiBrKQAd2-IkCNi-yXwPV_yTmTs_5laY/a11235de4ef7c79179a4f49aa2dd32cf",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"channel",
+								"eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.EnhEvJD_ETzcTVuw_sRxG8AVXTu08CFnbeldlrG3J0V3x61HTLoH6e_Nt79dQgpu9tL1FMoeyKmIx_bQ35Y7uq4YqUWmutTV.eEI79YKkTaWHaTsJKZg11A.dNZSrLiuE5_VzHNg2Ma2XQNAlGF0oD9V5sFZt5JUbPOvmB9BGTM5GonzGg99cBFR.F82cdwaX19KXiBrKQAd2-IkCNi-yXwPV_yTmTs_5laY",
+								"a11235de4ef7c79179a4f49aa2dd32cf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add queue",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payload\": \"eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.OroRu99rEzO6wHXwKX53Mi7yx573ttiiH7DtFEDhzvLWOZh0N3xSUoZC7kHum788x2TClnLFkNYoRNQ_9cHChpGkuEoMEpSZ.PCLpwTf6ex3RnFfceu18Fw.5dW20shSf9CDrUOjzxJ0uZvZWZgofqMMTCe6oOq3amv2ajjbLm4_6Chwx0GD-nisb6vPU4rJVuUDIVjDMLabKw.YVnBZufIXPWIPDBWgv4jRPzZhIwZPJom77Orqy9sjjE\",\n    \"user\": \"a11235de4ef7c79179a4f49aa2dd32cf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "34.192.83.53:5000/channel/add",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"channel",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List queues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "34.192.83.53:5000/channel/list/eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.OJxgKyOOPegVoWBqAoyzHHELORiuJZyIP4lPMGQ1j9pTBsB3Bi-TrGXnt6xWALJiTwbVm7qEakFDbuaHbG4BZwfiuu91oKJh.T-6wVVIb6i6XD3d3QRYDIw.qtyYYepzqclBnc9Gx8iio-F5aEc3aMmctAfF9Ovl2q1OnUAiy0f6u80Z88VbSTsa.HXqybxb0PeqK9koyVKoY1Cl-Ayh85dD1FIC3s7_odr0/a11235de4ef7c79179a4f49aa2dd32cf",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"channel",
+								"list",
+								"eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.OJxgKyOOPegVoWBqAoyzHHELORiuJZyIP4lPMGQ1j9pTBsB3Bi-TrGXnt6xWALJiTwbVm7qEakFDbuaHbG4BZwfiuu91oKJh.T-6wVVIb6i6XD3d3QRYDIw.qtyYYepzqclBnc9Gx8iio-F5aEc3aMmctAfF9Ovl2q1OnUAiy0f6u80Z88VbSTsa.HXqybxb0PeqK9koyVKoY1Cl-Ayh85dD1FIC3s7_odr0",
+								"a11235de4ef7c79179a4f49aa2dd32cf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete queue",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "34.192.83.53:5000/channel/remove/eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.QKg2W0i9izToJXRIKVaNUZ1M1_Xf66JyFzPFv4lvBYRNYafudu0fLzE-AIa56MeBP27XbLEVyfo2jOnG71Wjeiu-NXxtSr-f.nBOqPM07yN9kVB55-cDC2g.FQ7d6gYAeMdFIM1bzEs6Y2BXyA2ht5q_aVkGsxJseswtsmo0s0imBvyeX608513EFp-Ybw2M6VNsZfWE0S5tgA.PDOSkxw-Q1qZ1avwnQAX5enlHSAQnR_Eg5y5rTh3uOA/a11235de4ef7c79179a4f49aa2dd32cf",
+							"host": [
+								"34",
+								"192",
+								"83",
+								"53"
+							],
+							"port": "5000",
+							"path": [
+								"channel",
+								"remove",
+								"eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.QKg2W0i9izToJXRIKVaNUZ1M1_Xf66JyFzPFv4lvBYRNYafudu0fLzE-AIa56MeBP27XbLEVyfo2jOnG71Wjeiu-NXxtSr-f.nBOqPM07yN9kVB55-cDC2g.FQ7d6gYAeMdFIM1bzEs6Y2BXyA2ht5q_aVkGsxJseswtsmo0s0imBvyeX608513EFp-Ybw2M6VNsZfWE0S5tgA.PDOSkxw-Q1qZ1avwnQAX5enlHSAQnR_Eg5y5rTh3uOA",
+								"a11235de4ef7c79179a4f49aa2dd32cf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.227.225.31:5000/message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"payload\": \"eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIn0.d3Sinnjw0GGckYAYMFrPjt87AspjU_BM1z32wkyg60KNWsCe3mFOOrDNTA6KYGD21QElv_rZrSlcfJq5bnkoIjF4QjxroSs2.CdT1sgoq9Lukwb6zVscu4A.fWaCbrIw3_-dTYVZ-6eB5rTxVK2oy0tlTobTSlYs8jS1d0L4BfNtpZbY_3xaa1fi.ZNADRkpeF8oAh-DF4bum82c86F95YnGGn1wmet6nJB4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "3.227.225.31:5000/message",
+					"host": [
+						"3",
+						"227",
+						"225",
+						"31"
+					],
+					"port": "5000",
+					"path": [
+						"message"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
