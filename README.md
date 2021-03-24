@@ -37,7 +37,7 @@ Mediante el análisis decidimos plantear el proyecto con un broker y un servidor
 
 **PD1:** No realizamos interfaz de usuario, por ende todos los procedimientos se hacen por medio de llamados desde postman. (El archivo con los llamados estará ubicado en la carpeta "llamados", un archivo .json)
 
-    ![postman](images/postman.JPG.jpg)
+![postman](images/postman.JPG)
 
 
 **PD2:** Para las operaciones donde se necesite ingresar algún parametro por seguridad, se debe crear un claim con el nombre del usuario, o del parametro, y firmarlo con la llave, esto generará el payload necesario para ejectuar el llamado por postman. 
