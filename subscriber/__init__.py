@@ -6,7 +6,7 @@ from jwt_controller import SecurityCell
 
 if __name__ == '__main__':
     securityCell = SecurityCell().__get_instance__
-    userKey = {'k': "0vivq918wKXbGmmTYr9Nu6UgdIWpbdf3xPL5BtZOvwg", 'kty': 'oct'}
+    userKey = {'k': "bWPdlgCsnc5dWrgVU7MO85P5w2-Id5ILfAXW3iRPo6k", 'kty': 'oct'}
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect(('34.192.83.53', 5050))
@@ -14,7 +14,7 @@ if __name__ == '__main__':
         data = {
             "type": "connection",
             "from": socket.gethostname(),
-            "user": "d84cca2454b4bd6d9a9322e9f8ac7aff",
+            "user": "c5352863b41a38708d44147eda736a6d",
             "topic": ""
         }
         s.sendall(json.dumps(data).encode())
@@ -26,7 +26,7 @@ if __name__ == '__main__':
             data = {
                 "type": "subscribe",
                 "from": socket.gethostname(),
-                "user": "d84cca2454b4bd6d9a9322e9f8ac7aff",
+                "user": "c5352863b41a38708d44147eda736a6d",
                 "topic": "Eventos"
             }
 

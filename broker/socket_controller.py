@@ -44,7 +44,7 @@ class SocketController:
         self.__port = os.environ.get("PORT", port)
         self.__host = os.environ.get("HOST", host)
         self.s = socket.create_server(("", 5050))
-        self.s.listen(5)
+        self.s.listen()
         logging.info(f"Server configure in {self.__host}:{self.__port}")
 
     def start_socket(self):
