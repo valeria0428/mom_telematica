@@ -78,6 +78,7 @@ class SocketController:
 
     def auth(self, connection_auth):
         data = json.loads(connection_auth.decode())
+        logging.Logger(data)
         if data['type'] == "connection":
             if data['topic'] == "update":
                 if data["from"] == "synchronizer" and data['user'] == "channel_controller":
