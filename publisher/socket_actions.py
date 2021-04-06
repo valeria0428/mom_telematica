@@ -26,7 +26,7 @@ class SocketActions:
         if self.__instance is None:
             self.__instance = object.__new__(self)
         return self.__instance
-
+    #Init socket
     def start_socket(self):
         if self.__user is None or self.__user == "":
             raise Exception("No se ha encontrado ningun usuario agregalo al entorno")
