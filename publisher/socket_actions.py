@@ -11,8 +11,8 @@ class SocketActions:
     __instance = None
     __socket = None
     __security = SecurityCell().__get_instance__
-    __user_key = {'k': os.environ.get('USER_KEY'), 'kty': 'oct'}
-    __user = os.environ.get('SUSER')
+    __user_key = {'k': os.environ.get('USER_KEY', "Byu502cUBiIFn_MtACnr69s9pbnqRT2WacuL28xUejc"), 'kty': 'oct'}
+    __user = os.environ.get('SUSER', "3d63339eeb222943dc3161f114dcd4d7")
 
     __is_ready = False
 
